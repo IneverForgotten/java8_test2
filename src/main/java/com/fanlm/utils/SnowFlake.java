@@ -1,3 +1,5 @@
+package com.fanlm.utils;
+
 /**
  * twitter的snowflake算法 -- java实现
  * 

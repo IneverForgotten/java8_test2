@@ -1,4 +1,4 @@
-package org.nfec.common.constraint;
+package com.fanlm.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,7 +12,7 @@ import java.util.Date;
  * 自定义注解实现
  */
 @Slf4j
-public class TimeStampValidConstraintValidator implements ConstraintValidator<TimeStampValid, Object> {
+public class TimeStampValidConstraintValidator implements ConstraintValidator<org.nfec.common.constraint.TimeStampValid, Object> {
 
     @Value("${timestampValid.check}")
     private boolean check;
@@ -60,8 +60,6 @@ public class TimeStampValidConstraintValidator implements ConstraintValidator<Ti
 
         } catch (Exception e) {
             e.printStackTrace();
-
-            log.error(e.getMessage());
         }
 
 
@@ -69,6 +67,6 @@ public class TimeStampValidConstraintValidator implements ConstraintValidator<Ti
     }
 
     @Override
-    public void initialize(TimeStampValid constraintAnnotation) {
+    public void initialize(org.nfec.common.constraint.TimeStampValid constraintAnnotation) {
     }
 }
