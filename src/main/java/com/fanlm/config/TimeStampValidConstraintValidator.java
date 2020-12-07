@@ -12,7 +12,7 @@ import java.util.Date;
  * 自定义注解实现
  */
 @Slf4j
-public class TimeStampValidConstraintValidator implements ConstraintValidator<org.nfec.common.constraint.TimeStampValid, Object> {
+public class TimeStampValidConstraintValidator implements ConstraintValidator<TimeStampValid, Object> {
 
     @Value("${timestampValid.check}")
     private boolean check;
@@ -60,6 +60,7 @@ public class TimeStampValidConstraintValidator implements ConstraintValidator<or
 
         } catch (Exception e) {
             e.printStackTrace();
+
         }
 
 
@@ -67,6 +68,6 @@ public class TimeStampValidConstraintValidator implements ConstraintValidator<or
     }
 
     @Override
-    public void initialize(org.nfec.common.constraint.TimeStampValid constraintAnnotation) {
+    public void initialize(TimeStampValid constraintAnnotation) {
     }
 }

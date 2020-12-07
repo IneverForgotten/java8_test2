@@ -1,4 +1,5 @@
-package org.nfec.common.constraint;
+package com.fanlm.config;
+
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
