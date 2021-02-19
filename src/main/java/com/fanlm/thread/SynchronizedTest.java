@@ -42,14 +42,14 @@ class WaitNotifyExample {
 
     public synchronized void after() {
         try {
-            wait();
+            wait();//等待
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         System.out.println("after");
     }
 }
-class A extends Thread {
+class   A extends Thread {
     @Override
     public void run() {
         System.out.println("A");
@@ -68,7 +68,7 @@ class B extends Thread {
     public void run() {
         System.out.println("B");
         try {
-            a.join();
+            a.join();//带带
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

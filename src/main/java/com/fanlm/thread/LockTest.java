@@ -17,6 +17,14 @@ public class LockTest {
         ExecutorService executorService = Executors.newCachedThreadPool();
         executorService.execute(() -> lockExample.func());
         executorService.execute(() -> lockExample.func());
+
+
+
+            //等待通知
+            ExecutorService executorServiceAwaitSignal = Executors.newCachedThreadPool();
+            AwaitSignalExample example = new AwaitSignalExample();
+            executorServiceAwaitSignal.execute(() -> example.after());
+            executorServiceAwaitSignal.execute(() -> example.before());
     }
 
 

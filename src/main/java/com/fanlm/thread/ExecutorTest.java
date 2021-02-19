@@ -1,7 +1,9 @@
 package com.fanlm.thread;
 
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import static java.lang.Thread.interrupted;
 
@@ -12,15 +14,16 @@ import static java.lang.Thread.interrupted;
  * @create: 2021-02-01 15:33
  **/
 public class ExecutorTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
         ExecutorService executorService = Executors.newCachedThreadPool();
         for (int i = 0; i < 5; i++) {
-            executorService.execute(new MyRunnable());
+            executorService.execute(new MyRunnable2());
         }
         executorService.shutdown();
-
+        Future<?> submit = executorService.submit(new MyRunnable2());
+        Object o = submit.get();
         //daemon
-        Thread thread = new Thread(new MyRunnable());
+        Thread thread = new Thread(new MyRunnable2());
         thread.setDaemon(true);
         thread.start();
 
@@ -37,7 +40,7 @@ public class ExecutorTest {
     }
 }
 
-class MyRunnable implements Runnable{
+class MyRunnable2 implements Runnable{
 
     @Override
     public void run() {
