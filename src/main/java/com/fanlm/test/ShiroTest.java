@@ -14,6 +14,10 @@ import java.util.Arrays;
 
 public class ShiroTest {
     public static void main(String[] args) {
+        int a = 1;
+        int b ;
+        b = ++a;
+
         //*MA5+SALT+1024
         Md5Hash md5Hash = new Md5Hash("123", "123", 1024);
         System.out.println(md5Hash.toHex());
