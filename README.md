@@ -1,3 +1,10 @@
 # java8_test2
-java8 api测试
-thread 测试
+stream
+nio
+thread
+AUC
+cache：Guava
+netty
+shiro
+redis 单机
+swagger
