@@ -4,6 +4,7 @@ import com.fanlm.config.inter.EnableLog;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableAsync;
 
@@ -20,7 +21,7 @@ public class Java8TestApplication {
 
 
     public static void main(String[] args) {
-        SpringApplication.run(Java8TestApplication.class, args);
+        ConfigurableApplicationContext run = SpringApplication.run(Java8TestApplication.class, args);
     }
 
 }
