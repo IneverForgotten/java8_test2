@@ -17,13 +17,13 @@ public class ExecutorTest {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         ExecutorService executorService = Executors.newCachedThreadPool();
         for (int i = 0; i < 5; i++) {
-            executorService.execute(new MyRunnable2());
+            executorService.execute(new MyRunnable211());
         }
         executorService.shutdown();
-        Future<?> submit = executorService.submit(new MyRunnable2());
+        Future<?> submit = executorService.submit(new MyRunnable211());
         Object o = submit.get();
         //daemon
-        Thread thread = new Thread(new MyRunnable2());
+        Thread thread = new Thread(new MyRunnable211());
         thread.setDaemon(true);
         thread.start();
 
@@ -40,7 +40,7 @@ public class ExecutorTest {
     }
 }
 
-class MyRunnable2 implements Runnable{
+class MyRunnable211 implements Runnable{
 
     @Override
     public void run() {

@@ -164,6 +164,15 @@
             <version>2.8.6</version>
         </dependency>
 
+
+<!-- google local cache -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>19.0</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>

@@ -24,7 +24,7 @@ public class ThreadLocalExample {
 
         for (int i = 0; i < 10; i++) {
             //创建WorkerThread对象（WorkerThread类实现了Runnable 接口）
-            Runnable worker = new MyRunnable2("" + i);
+            Runnable worker = new MyRunnable21("" + i);
             //执行Runnable
             executor.execute(worker);
         }
@@ -35,11 +35,11 @@ public class ThreadLocalExample {
         System.out.println("Finished all threads");
     }
 }
-class MyRunnable2 implements Runnable {
+class MyRunnable21 implements Runnable {
 
     private String command;
 
-    public MyRunnable2(String s) {
+    public MyRunnable21(String s) {
         this.command = s;
     }
 

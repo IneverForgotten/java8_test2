@@ -18,13 +18,6 @@ public class Java8TestApplication {
     public SpringBeanUtil getSpringBeanUtil() {
         return new SpringBeanUtil();
     }
-
-
-
-
-
-
-
     public static void main(String[] args) {
         ConfigurableApplicationContext run = SpringApplication.run(Java8TestApplication.class, args);
     }

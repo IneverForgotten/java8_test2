@@ -18,7 +18,7 @@ public class ThreadPoolExecutorExample {
         ThreadPoolExecutor executor = new ThreadPoolExecutor(2,10,1000, TimeUnit.SECONDS,new ArrayBlockingQueue<>(100),new ThreadPoolExecutor.CallerRunsPolicy());
         for (int i = 0; i < 10; i++) {
             //创建WorkerThread对象（WorkerThread类实现了Runnable 接口）
-            Runnable worker = new MyRunnable2();
+            Runnable worker = new MyRunnable211();
             //执行Runnable
 //            executor.execute(worker);
             String s1 = "";
