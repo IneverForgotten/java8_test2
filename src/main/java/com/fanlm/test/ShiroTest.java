@@ -44,6 +44,7 @@ public class ShiroTest {
         Subject subject = SecurityUtils.getSubject();
 
         UsernamePasswordToken token = new UsernamePasswordToken("wang","123");
+        token.setRememberMe(true);// 浏览器 记住我
         try {
             subject.login(token);
         }catch (IncorrectCredentialsException e){

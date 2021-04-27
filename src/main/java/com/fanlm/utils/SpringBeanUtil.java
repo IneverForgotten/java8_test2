@@ -1,4 +1,4 @@
-package com.fanlm;
+package com.fanlm.utils;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

@@ -4,6 +4,8 @@ import com.fanlm.entity.Action;
 import com.fanlm.entity.ActionExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+
 
 public interface ActionMapper {
     /**

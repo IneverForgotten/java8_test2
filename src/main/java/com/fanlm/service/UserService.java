@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
+//@Service
 public class UserService {
     @Resource
     private UserMapper userMapper;

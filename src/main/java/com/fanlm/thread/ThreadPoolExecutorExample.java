@@ -2,6 +2,7 @@ package com.fanlm.thread;
 
 import java.util.Date;
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @program: java8_test
@@ -65,5 +66,20 @@ class MyRunnable implements Runnable {
     @Override
     public String toString() {
         return this.command;
+    }
+}
+
+class MyThreadFactory implements ThreadFactory{
+    private  final  String namePrefix ;
+    private  final AtomicInteger atomicInteger = new AtomicInteger(1) ;
+
+    MyThreadFactory(String waitFactoryGroup){
+        namePrefix = "From MyThreadFactory" + waitFactoryGroup + "- Worker - ";
+    }
+    @Override
+    public Thread newThread(Runnable r) {
+        String name = namePrefix + atomicInteger.getAndIncrement();
+        Thread thread = new Thread(null,r,name,0);
+        return thread;
     }
 }

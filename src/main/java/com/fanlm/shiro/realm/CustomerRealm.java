@@ -59,6 +59,8 @@ public class CustomerRealm extends AuthorizingRealm {
         return authenticationInfo;
     }
 
+
+
     public void clearCached() {
         //清除缓存
         System.out.println("clear Cached");
