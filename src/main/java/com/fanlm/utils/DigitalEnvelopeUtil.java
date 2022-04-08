@@ -1,4 +1,4 @@
-package com.datangwealth.weixin.common.utils;
+package com.fanlm.utils;
 
 import cn.hutool.core.codec.Base64;
 import cn.hutool.core.util.HexUtil;
