@@ -1,6 +1,11 @@
 package com.fanlm.test;
 
 import cn.hutool.core.lang.func.LambdaUtil;
+import cn.hutool.core.util.CharsetUtil;
+import cn.hutool.core.util.HexUtil;
+import cn.hutool.crypto.SecureUtil;
+import cn.hutool.crypto.asymmetric.KeyType;
+import cn.hutool.crypto.asymmetric.RSA;
 import com.fanlm.test.function.MyFilrstFunction;
 import com.fanlm.utils.LambdaUtils;
 import com.google.common.collect.Lists;
@@ -8,8 +13,11 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import lombok.var;
 
+import javax.crypto.Mac;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -35,7 +43,33 @@ public class FunctionTest {
 
      */
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoSuchAlgorithmException {
+
+        String privateKey = "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBALIzaIRRl9fg2jit1gU3mNNFyhypQEmyUVQ6H04mOozPdGzs5+Pbvaz/9ozfHjLtInuwjtSALnpJz6wdR1QeLa4oiuyEPWBFGiCndIcWdeKVI3OQLRWnV9YRYpnLVvjZ48sYqgTMZ4U1YcV7Sl9G0AzSyaFVfdFXfnwjmS4j6D29AgMBAAECgYEAmyBrfLx2vaPs8+hIZlRGwqx/TEH+R+lmKTdLp0FaONgjlusI1u+kh6RvIaTdaiHKofhJ7i0DyMrWcRMv08dNpVeiE+ainggSTtsdJdrVEmpseRQUA94kCrZQExVyVtqh5OjAi7PJ60hhqDlij43ZVlw5d9Onp6e6+29wCKkzFSECQQDs6NbEpitqR0U0Oh16QX3jpNDvUoElKmyl2o0WJpMqHi476G2N5JeFMjf81zOGh9/EuR3VjxwoTZxRujtk2BJZAkEAwI96g7lzK4wO7O9RtPYAg5q8hqunMCWlJKzA1evfIzzvLWchiwdy8rjwgjPA3kr76tzzbHpsukKf/ebc/J6yBQJAZlop/4ezFhV4hpndBmapFuKsCdlhRkdP7U/AyKMdzYKAgw1l13m9JKSPn8Lx1dt6B6nag9tyVM9DC+QjqOvY8QJAFAJUvr9Ugl/pZSFxIha18vbvRCcuFkizIl55I0GBTE4WpGclCydZAHPLOhxanD66cqtG+Cy4g5pMubt1lyJ+aQJAf58hvv0J/haXO5cdSIiDbWihx/F2Un1HSevo0QeYyY8HxdvD3L4KXEPtFmT5Xb1agloozTBejtY6t/XAymEdWA==";
+        String publicKeyBase64 = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCyM2iEUZfX4No4rdYFN5jTRcocqUBJslFUOh9OJjqMz3Rs7Ofj272s//aM3x4y7SJ7sI7UgC56Sc+sHUdUHi2uKIrshD1gRRogp3SHFnXilSNzkC0Vp1fWEWKZy1b42ePLGKoEzGeFNWHFe0pfRtAM0smhVX3RV358I5kuI+g9vQIDAQAB";
+        //System.out.println(privateKey);
+        //System.out.println(publicKeyBase64);
+
+        RSA priRsa = new RSA(privateKey, null);
+        // 初始化RSA工具并设置公钥
+        RSA pubRsa = new RSA(null, publicKeyBase64);
+
+        String testString = "{\"orderId\":1234567}";
+        // 公钥加密
+        String encodeStr = pubRsa.encryptBase64(testString, KeyType.PublicKey);
+        System.out.println("encodeStr by public key:" + encodeStr);
+        // 私钥解密
+        String decodeStr = priRsa.decryptStr(encodeStr, KeyType.PrivateKey);
+        System.out.println("decodeStr by private key:" + decodeStr);
+
+        // 私钥加密
+        String encodeStr1 = priRsa.encryptBase64(testString, KeyType.PrivateKey);
+        System.out.println("encodeStr1 by private key:" + encodeStr1);
+        // 公钥解密
+        String decodeStr1 = pubRsa.decryptStr("ZnXYu8XJu51XHmNf71PgTmuD0zZKbNlUljSlQoNMZREkzaEjyxK1bjlmCdNnFVSbkAfcN5SBXWSZyN+Yg0RKM01yBtU+d9PkBzqIJh2E+Ps82daxr03dXqy/ji+tJQafq8eBVbif5jxi+I0xJURqV/5SnsdG8PENXtqCQsaHzKx3YnHHXIi+AqM1kIpxiAUd6O9RpvuG/yfIg04XONtzha/FtFGnfRJ0qMzXE5OkBTNVc8GK/ZndecuYouQYO+mO54un4BiOqbMqsBK6C5BZob+tZS1PQHDeU7cQA53T9s3urXilePWJQeSpcbsaO3zKrV2QdG/EBjhEINA5mwJJOQ==", KeyType.PublicKey);
+        System.out.println("decodeStr1 by public key:" + decodeStr1);
+
+
         //var a = new String("1234");   JAVA10
         testFirstFunction(() -> "hello world");
         testThread(() -> System.out.println("testThread start!"));
@@ -47,6 +81,9 @@ public class FunctionTest {
         //供应
         System.out.println(testSupplier(() -> "aaa"));
 
+        Consumer<String> con = testConsumer( s -> System.out.println(s));
+
+        con.accept("a");
         //消费
         testConsumer( s -> System.out.println(s));
         //消费2
@@ -89,8 +126,9 @@ public class FunctionTest {
         return suply.get();
     }
 
-    public static void testConsumer(Consumer<String> consumer){
+    public static Consumer testConsumer(Consumer<String> consumer){
         consumer.accept("helo consumer");
+        return s -> System.out.println(s);
     }
 
     public static void formattorPersonMsg(Consumer<String[]> con1, Consumer<String[]> con2) {

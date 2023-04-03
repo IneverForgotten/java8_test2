@@ -18,7 +18,8 @@ import java.util.function.Consumer;
 public class ConsumerTest {
     public static void main(String[] args) {
         Consumer c = a -> {a = (int)a * 2;
-            System.out.println(a);};
+            System.out.println(a);
+        };
         c.accept(123);
 
         Consumer f = System.out::println;

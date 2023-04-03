@@ -1,10 +1,5 @@
 package com.fanlm.nio;
 
-import com.sun.xml.internal.messaging.saaj.util.ByteInputStream;
-import org.apache.tomcat.util.buf.ByteChunk;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
