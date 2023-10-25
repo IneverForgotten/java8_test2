@@ -1,6 +1,8 @@
 package com.fanlm.thread;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -15,7 +17,34 @@ public class ThreadPoolExecutorExample {
 
 //        ThreadPoolExecutor executor1 = new ScheduledThreadPoolExecutor(1,)
 
+//        ThreadPoolExecutor executor = new ThreadPoolExecutor(5,10,1000, TimeUnit.SECONDS,new ArrayBlockingQueue<>(100),new ThreadPoolExecutor.CallerRunsPolicy());
 
+//        for (int i = 0; i < 10; i++) {
+//            //创建WorkerThread对象（WorkerThread类实现了Runnable 接口）
+//            Runnable worker = new MyRunnable2();
+//            //执行Runnable
+////            executor.execute(worker);
+//            String s1 = "";
+//            Future<String> submit = executor.submit(new Callable<String>() {
+//                @Override
+//                public String call() throws Exception {
+//                    return ""+args.toString();
+//                }
+//            });
+//            String s = submit.get();
+//            System.out.println(s);
+//        }
+        List<String> list = new ArrayList<>();
+        list.add("s");
+        list.add("s");
+        list.add("s");
+        list.add("s");
+        list.add("s");
+        long l = System.currentTimeMillis();
+//        for (int i = 0; i < 5; i++) {
+//            //创建WorkerThread对象（WorkerThread类实现了Runnable 接口）
+//            Runnable worker = new MyRunnable3();
+//            //执行Runnable
         ThreadPoolExecutor executor = new ThreadPoolExecutor(2,10,1000, TimeUnit.SECONDS,new ArrayBlockingQueue<>(100),new ThreadPoolExecutor.CallerRunsPolicy());
         for (int i = 0; i < 10; i++) {
             //创建WorkerThread对象（WorkerThread类实现了Runnable 接口）
