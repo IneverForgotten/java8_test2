@@ -4,6 +4,7 @@ package com.fanlm.cache;
 import com.google.common.hash.BloomFilter;
 import com.google.common.hash.Funnels;
 
+import java.math.BigInteger;
 import java.util.HashSet;
 
 /**
@@ -39,5 +40,7 @@ public class BloomGuava {
         System.out.println("总共的误判数: " + count);
         System.out.println("用的时间: " + (System.currentTimeMillis() - start));
     }
+
+
 
 }
