@@ -2,11 +2,13 @@ package com.fanlm.bean;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.apache.jasper.tagplugins.jstl.core.If;
 
 import javax.swing.text.StyleConstants;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Consumer;
 
 /**
@@ -17,19 +19,36 @@ import java.util.function.Consumer;
  */
 public class ConsumerTest {
     public static void main(String[] args) {
+        Consumer<String> consumer1 = new Consumer<String>() {
+            @Override
+            public void accept(String s) {
+                System.out.println(s);
+            }
+        };
+        //lambda表达式
+        Consumer<String> consumer2 = s -> System.out.println(s);
+        //方法引用
+        Consumer<String> consumer3 = System.out::println;
+
+//        consumer2.accept("test consumer2");
+//        consumer3.accept("test consumer3");
+
+
         Consumer c = a -> {a = (int)a * 2;
             System.out.println(a);
         };
-        c.accept(123);
+//        c.accept(123);
 
         Consumer f = System.out::println;
         Consumer f2 = n -> System.out.println(n + "-F2");
+        Consumer f3 = n -> System.out.println(Objects.isNull(n) ? "11" : "22" );
+        Consumer f4 = n -> System.out.println(n + "-F4");
 
         //执行完F后再执行F2的Accept方法
-        f.andThen(f2).accept("test");
+//        f.andThen(f2).accept("test");
 
         //连续执行F的Accept方法
-        f.andThen(f).andThen(f).andThen(f).accept("test1");
+        f.andThen(f2).andThen(f3).andThen(f4).accept(1);
 //        -----------------------------------------------
         ArrayList<Employee> employees = new ArrayList<>();
         String[] prefix = {"A", "B"};
@@ -76,10 +95,8 @@ public class ConsumerTest {
 
         @Override
         public String toString() {
-            return new StringBuilder()
-                    .append("name:").append(name)
-                    .append(",salary:").append(salary)
-                    .toString();
+            return "name:" + name +
+                    ",salary:" + salary;
         }
     }
 
