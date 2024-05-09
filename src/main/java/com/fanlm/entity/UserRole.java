@@ -1,5 +1,8 @@
 package com.fanlm.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
+
+@TableName("user_role")
 public class UserRole {
     /**
      *

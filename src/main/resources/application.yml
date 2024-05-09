@@ -1,0 +1,44 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  jsp:
+    view:
+      prefix: /
+      suffix: .jsp
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/java8_test?useSSL=false&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+
+  redis:
+    database: 0
+    host: 192.168.0.24
+    port: 6379
+    password:
+    jedis:
+      pool:
+        max-active: 200
+        max-wait: -1
+        max-idle: 10
+        min-idle: 0
+    timeout: 1000
+
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+  type-aliases-package: com.fanlm.entity
+
+# \u6CE8\u610F\uFF1A\u5728YAML\u4E2D\uFF0C\u6CE8\u91CA\u4E0D\u80FD\u76F4\u63A5\u653E\u5728\u952E\u503C\u5BF9\u4E4B\u524D\uFF0C\u9700\u8981\u4F7F\u7528#\u8FDB\u884C\u6807\u6CE8
+# mybatis.mapper-locations: classpath:mapper/*.xml
+
+
+
+logging:
+  config: classpath:log4j2-spring.xml
+  level:
+    root: info
+level:
+  cn.jay.repository: trace
+
