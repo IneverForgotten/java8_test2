@@ -1,4 +1,4 @@
-package com.fanlm.algorithm;
+package com.fanlm.arhthmetic;
 
 public class QuickSort {
     public static void main(String[] args) {

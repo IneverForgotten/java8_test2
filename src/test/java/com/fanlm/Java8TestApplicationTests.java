@@ -1,5 +1,6 @@
 package com.fanlm;
 
+import com.fanlm.cache.IGlobalCache;
 import com.fanlm.controller.TestController;
 import com.fanlm.entity.Action;
 import com.fanlm.mapper.ActionMapper;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -31,4 +33,15 @@ class Java8TestApplicationTests {
 
     }
 
+
+    @Autowired
+    private IGlobalCache globalCache;
+
+    @Test
+    public void test() {
+        globalCache.set("key2", "value3");
+        globalCache.lSetAll("list", Arrays.asList("hello", "redis"));
+        List<Object> list = globalCache.lGet("list", 0, -1);
+        System.out.println(globalCache.get("key2"));
+    }
 }

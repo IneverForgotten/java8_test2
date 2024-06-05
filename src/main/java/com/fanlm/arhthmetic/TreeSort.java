@@ -1,4 +1,4 @@
-package com.fanlm.algorithm;
+package com.fanlm.arhthmetic;
 
 import javax.swing.tree.TreeNode;
 import java.util.ArrayList;
