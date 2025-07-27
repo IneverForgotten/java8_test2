@@ -24,7 +24,11 @@ class Java8TestApplicationTests {
 
     @Test
     void contextLoads() {
-        testController.test();
+        try {
+            testController.test();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Test

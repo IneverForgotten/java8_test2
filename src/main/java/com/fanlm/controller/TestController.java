@@ -2,6 +2,7 @@ package com.fanlm.controller;
 
 import com.fanlm.service.TestAsyncService;
 import com.fanlm.service.TestService;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,8 +20,9 @@ public class TestController {
     @Resource
     private TestService testService;
 
-    @RequestMapping("test")
-    public void test(){
+    @GetMapping("test")
+    public void test() throws InterruptedException {
+        Thread.sleep(11000);
         System.out.println("程序执行-----------------");
         testService.test();
     }

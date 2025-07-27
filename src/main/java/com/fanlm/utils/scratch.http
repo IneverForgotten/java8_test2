@@ -1,7 +1,0 @@
-POST http://10.144.0.48:7001/jros
-Content-Type: application/json
-{
-    "bexCode": "123456",
-    "g_funcid": "100004",
-    "g_kjseid": "100004"
-}
